@@ -1,5 +1,5 @@
 # erzeugt Samstag, 04. Juli 2015 14:04 (C) 2015 von Leander Jedamus
-# modifiziert Samstag, 15. August 2015 12:05 von Leander Jedamus
+# modifiziert Samstag, 15. August 2015 12:21 von Leander Jedamus
 # modifiziert Mittwoch, 29. Juli 2015 13:28 von Leander Jedamus
 # modifiziert Freitag, 17. Juli 2015 20:37 von Leander Jedamus
 # modifiziert Dienstag, 14. Juli 2015 17:19 von Leander Jedamus
@@ -353,6 +353,7 @@ FILES		+= $(LEXFILES) $(YACCFILES)
 YACCCFILES	= $(YACCFILES:%.y=%.tab.c)
 YACCHFILES	= $(YACCCFILES:%.c=%.h)
 CLEAN		+= $(YACCHFILES)
+CLEAN		+= helper.mod
 FOBJS		= $(FFILES:%.f=%.o)
 OBJS		+= $(FOBJS)
 COBOBJS		= $(COBFILES:%.cob=%.o)
