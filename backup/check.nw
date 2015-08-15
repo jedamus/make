@@ -1,0 +1,34 @@
+@
+Dies ist ein Test. Umlaute sind äöüÄÖÜß.
+<<*>>=
+<<check.c>>
+<<check.h>>
+
+<<check.c>>=
+<<header>>
+<<includes>>
+
+<<main>>
+<<footer>>
+
+<<main>>=
+int
+main(int argc, char * argv[])
+{
+  exit(0);
+};// main
+
+<<check.h>>=
+<<header>>
+<<footer>>
+
+<<header>>=
+// -*- C -*-
+//
+// erzeugt Dienstag, 14. Juli 2015 16:56 (C) 2015 von Leander Jedamus
+
+<<footer>>=
+// vim:cindent ai sw=2
+<<includes>>=
+#include <stdlib.h>
+#include "check.h"

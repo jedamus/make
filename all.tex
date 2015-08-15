@@ -1,0 +1,94 @@
+
+% created Thursday, 26. February 2015 17:49 (C) 2015 by Leander Jedamus
+% modifiziert Freitag, 17. Juli 2015 20:27 von Leander Jedamus
+% modifiziert Samstag, 28. Februar 2015 18:10 von Leander Jedamus
+% modified Thursday, 26. February 2015 18:32 by Leander Jedamus
+
+\documentclass[ngermanb,12pt,twoside,openright,titlepage,numbers=noenddot,%
+               headinclude,footinclude=true,BCOR=5mm]{scrreprt}
+
+\usepackage[ngermanb]{babel}
+\usepackage{dina4}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{makeidx}
+
+\input{classicthesis-config}
+
+% wird fuer index gebraucht:
+\newcommand{\mydotfill}{\leaders\hbox to 5pt{\hss.\hss}\hfill}
+\makeindex
+
+% theglossary
+\newenvironment{theglossary}{{\Large\textsc Glossary}\begin{list}{}{}\item[]}{\end{list}}
+\makeglossary
+
+\title{Test}
+\author{Leander Jedamus}
+\markboth{\today}{Leander Jedamus}
+
+\begin{document}
+
+  \begin{titlepage}
+    \begin{center}
+      \myTitle\\
+      \mySubtitle\\
+      \myDegree\myName\\
+      bei \myProf\\
+      \myUni\\
+      \myLocation\\
+      \myTime\\
+      \myVersion
+    \end{center}
+\end{titlepage}
+
+  % \frontmatter
+    \tableofcontents\cleardoublepage
+
+  % \mainmatter
+  \maketitle
+
+  \chapter{Eins}
+
+    \section{Zitat}
+      Hier steht ein Zitat \cite{cit:ljhj}\index{Zitat}. \\
+
+    \section{Glossary}
+      Hier stehen Glossary-Einträge\glossary{c64}\index{Glossary}. \\
+
+    \section{Figure}
+      \begin{figure}[h]
+        \includegraphics[width=5cm]{../../Pictures/Fotos/16-02792.jpg}
+	\caption[Luchs]{Ein Luchs in freier Wildbahn}
+	\label{fig:luchs}\index{Figure}
+      \end{figure}
+
+    \section{Tabelle}
+      \begin{table}[h]
+        \begin{tabular}{||l|c|r||}
+          \hline
+          \hline
+          ich stehe links & ich stehe mittig & ich stehe rechts \\
+          \hline
+          l & c & r \\
+          \hline
+          \hline
+        \end{tabular}
+        \caption[Tabelle]{Eine kleine Tabelle zur Demonstration}
+        \label{tab:demo}\index{Tabelle}
+      \end{table}
+
+  % \backmatter
+    % \begin{appendix}
+      \cleardoublepage\pagenumbering{roman}\printindex\cleardoublepage
+      \listoffigures\cleardoublepage
+      \listoftables\cleardoublepage
+      \printindex\cleardoublepage
+      \bibliography{mybib}
+      \bibliographystyle{alpha}\cleardoublepage
+      \input{all.gls}\cleardoublepage
+    % \end{appendix}
+\end{document}
+
+% vim:ai sw=2
+
