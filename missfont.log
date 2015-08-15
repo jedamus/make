@@ -1,1 +1,0 @@
-mktexpk --mfmode / --bdpi 600 --mag 0+300/600 --dpi 300 plot_sinh
