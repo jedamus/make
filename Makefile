@@ -1,5 +1,5 @@
 # erzeugt Samstag, 04. Juli 2015 14:04 (C) 2015 von Leander Jedamus
-# modifiziert Samstag, 15. August 2015 12:27 von Leander Jedamus
+# modifiziert Samstag, 15. August 2015 12:35 von Leander Jedamus
 # modifiziert Mittwoch, 29. Juli 2015 13:28 von Leander Jedamus
 # modifiziert Freitag, 17. Juli 2015 20:37 von Leander Jedamus
 # modifiziert Dienstag, 14. Juli 2015 17:19 von Leander Jedamus
@@ -402,6 +402,8 @@ INCLATEXFILES3	+= rezepte_spinat.tex rezepte_speisekarte_deutschland.tex
 INCLATEXFILES3	+= rezepte_kartoffeln.tex rezepte_suppen.tex
 INCLATEXFILES3	+= rezepte_kuchen.tex rezepte_title.tex rezepte_mezze.tex
 INCLATEXFILES3	+= rezepte_zucchini.tex rezepte_neues.tex
+INCREZEPTFILES	= rezept_header.tex rezept_vorspann.tex rezept_toc.tex
+INCREZEPTFILES	+= rezept_index.tex rezept_gls.tex
 
 PDFFILES3	= $(LATEXFILES3:%.tex=%.pdf)
 IDXFILE3	= $(LATEXFILES3:%.tex=%.idx)
@@ -506,7 +508,7 @@ dummy:
 dachflaeche.f:	helper.o
 yylval.l:	grammar.tab.o
 check.c:	check.h
-rezepte.pdf:	$(INCLATEXFILES3)
+rezepte.pdf:	$(INCLATEXFILES3) $(INCREZEPTFILES)
 
 #
 # include a dependency file if one exists
