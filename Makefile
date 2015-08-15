@@ -1,5 +1,5 @@
 # erzeugt Samstag, 04. Juli 2015 14:04 (C) 2015 von Leander Jedamus
-# modifiziert Samstag, 15. August 2015 12:21 von Leander Jedamus
+# modifiziert Samstag, 15. August 2015 12:27 von Leander Jedamus
 # modifiziert Mittwoch, 29. Juli 2015 13:28 von Leander Jedamus
 # modifiziert Freitag, 17. Juli 2015 20:37 von Leander Jedamus
 # modifiziert Dienstag, 14. Juli 2015 17:19 von Leander Jedamus
@@ -506,6 +506,7 @@ dummy:
 dachflaeche.f:	helper.o
 yylval.l:	grammar.tab.o
 check.c:	check.h
+rezepte.pdf:	$(INCLATEXFILES3)
 
 #
 # include a dependency file if one exists
