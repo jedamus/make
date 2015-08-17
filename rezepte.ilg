@@ -1,0 +1,7 @@
+This is makeindex, version 2.15 [TeX Live 2014] (kpathsea + Thai support).
+Scanning style file ./makeindex.ist..........done (10 attributes redefined, 0 ignored).
+Scanning input file rezepte.idx..........done (6070 entries accepted, 0 rejected).
+Sorting entries...........................................................done (83550 comparisons).
+Generating output file rezepte.ind.........done (1311 lines written, 0 warnings).
+Output written in rezepte.ind.
+Transcript written in rezepte.ilg.
