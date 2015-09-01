@@ -1,5 +1,5 @@
 # erzeugt Samstag, 04. Juli 2015 14:04 (C) 2015 von Leander Jedamus
-# modifiziert Dienstag, 01. September 2015 15:58 von Leander Jedamus
+# modifiziert Dienstag, 01. September 2015 18:11 von Leander Jedamus
 # modifiziert Samstag, 15. August 2015 12:35 von Leander Jedamus
 # modifiziert Mittwoch, 29. Juli 2015 13:28 von Leander Jedamus
 # modifiziert Freitag, 17. Juli 2015 20:37 von Leander Jedamus
@@ -11,7 +11,7 @@ SUFFIXES	:= .out .a .o .c .cc .C .y .l .s .S .h .dvi .tex .latex .ps .w .ch .sh 
 .SUFFIXES	:= .out .a .o .c .cc .C .y .l .s .S .h .dvi .tex .latex .ps .w .ch .sh .noweb .mf .ind .sgml .f .cob .1 .odt .html .pdf .ps .tfm
 
 include Makefile.latex
-include Makefile.flex_und_bison
+include Makefile.flex_and_bison
 include Makefile.c_and_noweb
 include Makefile.documentation
 
