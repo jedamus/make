@@ -1,5 +1,5 @@
 # erzeugt Samstag, 04. Juli 2015 14:04 (C) 2015 von Leander Jedamus
-# modifiziert Dienstag, 01. September 2015 12:17 von Leander Jedamus
+# modifiziert Dienstag, 01. September 2015 13:34 von Leander Jedamus
 # modifiziert Samstag, 15. August 2015 12:35 von Leander Jedamus
 # modifiziert Mittwoch, 29. Juli 2015 13:28 von Leander Jedamus
 # modifiziert Freitag, 17. Juli 2015 20:37 von Leander Jedamus
@@ -7,10 +7,11 @@
 # modifiziert Mittwoch, 08. Juli 2015 15:20 von Leander Jedamus
 # modifiziert Samstag, 04. Juli 2015 14:11 von Leander Jedamus
 
-include Makefile.tex
-
 SUFFIXES	:= .out .a .o .c .cc .C .y .l .s .S .h .dvi .tex .latex .ps .w .ch .sh .noweb .mf .ind .sgml .f .cob .1 .odt .html .pdf .ps .tfm
 .SUFFIXES	:= .out .a .o .c .cc .C .y .l .s .S .h .dvi .tex .latex .ps .w .ch .sh .noweb .mf .ind .sgml .f .cob .1 .odt .html .pdf .ps .tfm
+
+include Makefile.latex
+include Makefile.flex_und_bison
 
 CC		= gcc # cc
 CXX		= g++
@@ -22,9 +23,6 @@ COBOLC          = cobc
 COBCWARN	=
 #COBCFREE	= -free
 COBCFREE	=
-
-LEX		= flex
-YACC		= bison
 
 POD2MAN		= pod2man
 GROFF		= groff
@@ -78,8 +76,6 @@ LDLIBS		+= -ll # lex
 LDLIBS		+= -ly # yacc
 CLEAN		= #
 
-LEXFILE		= lex.yy.c
-
 define compile.c
 $(RM) $@
 $(COMPILE.c) $< $(OUTPUT_OPTION)
@@ -108,17 +104,6 @@ endef
 define link.cc
 $(RM) $@
 $(LINK.cc) $^ $(LOADLIBES) -o $@ $(LDLIBS)
-endef
-
-define lex.l
-@$(RM) $@
-$(LEX) $<
-mv $(LEXFILE) $@
-endef
-
-define yacc.y
-@$(RM) $@
-$(YACC) -d $<
 endef
 
 define pod2man.pl
@@ -183,12 +168,6 @@ define print
 $(PRINT) $<
 endef
 
-%.c:		%.f
-		$(lex.l)
-
-%.tab.c:	%.y
-		$(yacc.y)
-
 %.1:		%.pl
 		$(pod2man.pl)
 
@@ -218,12 +197,6 @@ endef
 
 %.o:		%.cc
 		$(compile.cc)
-
-%.c:		%.l
-		$(lex.l)
-
-%.tab.c:	%.y
-		$(yacc.y)
 
 %.cc:		%.txt
 		$(generate)
