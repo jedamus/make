@@ -1,0 +1,68 @@
+# erzeugt Samstag, 04. Juli 2015 14:04 (C) 2015 von Leander Jedamus
+# modifiziert Dienstag, 01. September 2015 15:55 von Leander Jedamus
+# modifiziert Samstag, 15. August 2015 12:35 von Leander Jedamus
+# modifiziert Mittwoch, 29. Juli 2015 13:28 von Leander Jedamus
+# modifiziert Freitag, 17. Juli 2015 20:37 von Leander Jedamus
+# modifiziert Dienstag, 14. Juli 2015 17:19 von Leander Jedamus
+# modifiziert Mittwoch, 08. Juli 2015 15:20 von Leander Jedamus
+# modifiziert Samstag, 04. Juli 2015 14:11 von Leander Jedamus
+
+POD2MAN		= pod2man
+GROFF		= groff
+RST2MAN		= rst2man.py
+RST2LATEX	= rst2latex.py
+RST2ODT		= rst2odt.py
+RST2HTML	= rst2html.py
+
+RST		= rst
+
+define pod2man.pl
+@$(RM) $@
+$(POD2MAN) $< > $@
+endef
+
+define man2ps.1
+@$(RM) $@
+$(GROFF) -T ps -man $< > $@
+endef
+
+define rst2man.txt
+@$(RM) $@
+$(RST2MAN) $< > $@
+endef
+
+define rst2html.txt
+@$(RM) $@
+$(RST2HTML) $< > $@
+endef
+
+define rst2latex.txt
+@$(RM) $@
+$(RST2LATEX) $< > $@
+endef
+
+define rst2odt.txt
+@$(RM) $@
+$(RST2ODT) $< > $@
+endef
+
+%.1:		%.pl
+		$(pod2man.pl)
+
+%.ps:		%.1
+		$(man2ps.1)
+
+%.1:		%.$(RST)
+		$(rst2man.txt)
+
+%.tex:		%.$(RST)
+		$(rst2latex.txt)
+
+%.html:		%.$(RST)
+		$(rst2html.txt)
+
+%.odt:		%.$(RST)
+		$(rst2odt.txt)
+
+# vim:ai sw=2
+

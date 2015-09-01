@@ -1,5 +1,5 @@
 # erzeugt Samstag, 04. Juli 2015 14:04 (C) 2015 von Leander Jedamus
-# modifiziert Dienstag, 01. September 2015 15:52 von Leander Jedamus
+# modifiziert Dienstag, 01. September 2015 15:58 von Leander Jedamus
 # modifiziert Samstag, 15. August 2015 12:35 von Leander Jedamus
 # modifiziert Mittwoch, 29. Juli 2015 13:28 von Leander Jedamus
 # modifiziert Freitag, 17. Juli 2015 20:37 von Leander Jedamus
@@ -13,6 +13,7 @@ SUFFIXES	:= .out .a .o .c .cc .C .y .l .s .S .h .dvi .tex .latex .ps .w .ch .sh 
 include Makefile.latex
 include Makefile.flex_und_bison
 include Makefile.c_and_noweb
+include Makefile.documentation
 
 CC		= gcc # cc
 CXX		= g++
@@ -25,17 +26,12 @@ COBCWARN	=
 #COBCFREE	= -free
 COBCFREE	=
 
-POD2MAN		= pod2man
-GROFF		= groff
-RST2MAN		= rst2man.py
-RST2LATEX	= rst2latex.py
-RST2ODT		= rst2odt.py
-RST2HTML	= rst2html.py
 
 DEBUGGER	= gdb
 RM		= rm -f
 GENERATE	= ./generate2
 PRINT		= print
+
 COPTS		= $(DFLAGS) $(CPPFLAGS) $(IFLAGS) $(TARGET_ARCH)
 LOPTS		= $(CPPFLAGS) $(LDFLAGS) $(TARGET_ARCH)
 C.c		= $(CC) $(strip $(CFLAGS) $(COPTS))
@@ -48,8 +44,6 @@ LINK.c		= $(CC) $(strip $(CFLAGS) $(LOPTS))
 LINK.cc		= $(CXX) $(strip $(CXXFLAGS) $(LOPTS))
 DEPEND.c	= $(C.c) -MM
 DEPEND.cc	= $(C.cc) -MM
-
-RST		= rst
 
 CFLAGS		= #
 CPPFLAGS	= -Wall -g
@@ -100,36 +94,6 @@ $(RM) $@
 $(LINK.cc) $^ $(LOADLIBES) -o $@ $(LDLIBS)
 endef
 
-define pod2man.pl
-@$(RM) $@
-$(POD2MAN) $< > $@
-endef
-
-define man2ps.1
-@$(RM) $@
-$(GROFF) -T ps -man $< > $@
-endef
-
-define rst2man.txt
-@$(RM) $@
-$(RST2MAN) $< > $@
-endef
-
-define rst2html.txt
-@$(RM) $@
-$(RST2HTML) $< > $@
-endef
-
-define rst2latex.txt
-@$(RM) $@
-$(RST2LATEX) $< > $@
-endef
-
-define rst2odt.txt
-@$(RM) $@
-$(RST2ODT) $< > $@
-endef
-
 define debug
 $(DEBUGGER)
 endef
@@ -141,24 +105,6 @@ endef
 define print
 $(PRINT) $<
 endef
-
-%.1:		%.pl
-		$(pod2man.pl)
-
-%.ps:		%.1
-		$(man2ps.1)
-
-%.1:		%.$(RST)
-		$(rst2man.txt)
-
-%.tex:		%.$(RST)
-		$(rst2latex.txt)
-
-%.html:		%.$(RST)
-		$(rst2html.txt)
-
-%.odt:		%.$(RST)
-		$(rst2odt.txt)
 
 %.o:		%.c
 		$(compile.c)
