@@ -16,7 +16,6 @@ GS		= gs
 GNUPLOT		= gnuplot
 MF		= mf
 GFTOPK		= gftopk
-SED		= sed
 TOUCH		= touch
 
 MAKEINDEX.idx	= $(MAKEINDEX) $(MAKEINDEXFLAGS)
@@ -26,8 +25,6 @@ MAKEINDEXFLAGS	= -s makeindex.ist -g -l
 PAPER		= a4
 RES1		= 300
 RES2		= 600
-SEDCMD		= noweb2latex.sed
-SEDTMP		= sed.tmp
 DOPLOT		= doplot
 
 define tex
@@ -64,11 +61,6 @@ endef
 define gftopk
 $(RM) $@
 $(GFTOPK) $<
-endef
-
-define sed
-$(SED) -f $(SEDCMD) $@ > $(SEDTMP)
-mv $(SEDTMP) $@
 endef
 
 define makeindex

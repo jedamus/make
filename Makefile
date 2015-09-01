@@ -1,5 +1,5 @@
 # erzeugt Samstag, 04. Juli 2015 14:04 (C) 2015 von Leander Jedamus
-# modifiziert Dienstag, 01. September 2015 13:46 von Leander Jedamus
+# modifiziert Dienstag, 01. September 2015 15:52 von Leander Jedamus
 # modifiziert Samstag, 15. August 2015 12:35 von Leander Jedamus
 # modifiziert Mittwoch, 29. Juli 2015 13:28 von Leander Jedamus
 # modifiziert Freitag, 17. Juli 2015 20:37 von Leander Jedamus
@@ -12,6 +12,7 @@ SUFFIXES	:= .out .a .o .c .cc .C .y .l .s .S .h .dvi .tex .latex .ps .w .ch .sh 
 
 include Makefile.latex
 include Makefile.flex_und_bison
+include Makefile.c_and_noweb
 
 CC		= gcc # cc
 CXX		= g++
@@ -32,11 +33,6 @@ RST2ODT		= rst2odt.py
 RST2HTML	= rst2html.py
 
 DEBUGGER	= gdb
-CWEAVE		= cweave
-CTANGLE		= ctangle
-NOWEAVE		= noweave
-NOTANGLE	= notangle
-
 RM		= rm -f
 GENERATE	= ./generate2
 PRINT		= print
@@ -53,9 +49,7 @@ LINK.cc		= $(CXX) $(strip $(CXXFLAGS) $(LOPTS))
 DEPEND.c	= $(C.c) -MM
 DEPEND.cc	= $(C.cc) -MM
 
-NOWEAVE.latex	= $(NOWEAVE) -latex
 RST		= rst
-NOWEB		= nw
 
 CFLAGS		= #
 CPPFLAGS	= -Wall -g
@@ -140,26 +134,6 @@ define debug
 $(DEBUGGER)
 endef
 
-define ctangle
-$(RM) $@
-$(CTANGLE) $<
-endef
-
-define cweave
-$(RM) $@
-$(CWEAVE) $<
-endef
-
-define notangle
-$(RM) $@
-$(NOTANGLE) -R$@ $< > $@
-endef
-
-define noweave
-$(RM) $@
-$(NOWEAVE) $< > $@
-endef
-
 define generate
 $(GENERATE) $<
 endef
@@ -203,28 +177,6 @@ endef
 
 %.hh:		%.txt
 		$(generate)
-
-%.c:		%.w
-		$(ctangle)
-
-%.tex:		%.w
-		$(cweave)
-
-%.c:		%.$(NOWEB)
-		$(notangle)
-
-%.h:		%.$(NOWEB)
-		$(notangle)
-
-%.cc:		%.$(NOWEB)
-		$(notangle)
-
-%.hh:		%.$(NOWEB)
-		$(notangle)
-
-%.tex:		%.$(NOWEB)
-		$(noweave)
-		$(sed)
 
 OBJS		= #
 FILES		= Makefile
