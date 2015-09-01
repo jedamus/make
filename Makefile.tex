@@ -1,0 +1,104 @@
+# erzeugt Samstag, 04. Juli 2015 14:04 (C) 2015 von Leander Jedamus
+# modifiziert Dienstag, 01. September 2015 12:13 von Leander Jedamus
+# modifiziert Samstag, 15. August 2015 12:35 von Leander Jedamus
+# modifiziert Mittwoch, 29. Juli 2015 13:28 von Leander Jedamus
+# modifiziert Freitag, 17. Juli 2015 20:37 von Leander Jedamus
+# modifiziert Dienstag, 14. Juli 2015 17:19 von Leander Jedamus
+# modifiziert Mittwoch, 08. Juli 2015 15:20 von Leander Jedamus
+# modifiziert Samstag, 04. Juli 2015 14:11 von Leander Jedamus
+
+TEX		= tex
+LATEX		= pdflatex
+MAKEINDEX	= makeindex
+BIBTEX		= bibtex
+DVIPS		= dvips
+GS		= gs
+GNUPLOT		= gnuplot
+MF		= mf
+GFTOPK		= gftopk
+SED		= sed
+TOUCH		= touch
+
+MAKEINDEX.idx	= $(MAKEINDEX) $(MAKEINDEXFLAGS)
+MAKEINDEXGST	= makeindex.gst
+MAKEINDEXIST	= makeindex.ist
+MAKEINDEXFLAGS	= -s makeindex.ist -g -l
+PAPER		= a4
+RES1		= 300
+RES2		= 600
+SEDCMD		= noweb2latex.sed
+SEDTMP		= sed.tmp
+DOPLOT		= doplot
+
+define tex
+$(RM) $@
+$(TEX) $<
+endef
+
+define latex
+$(RM) $@
+$(LATEX) $<
+$(LATEX) $<
+endef
+
+define dvips
+$(RM) $@
+$(DVIPS) -t $(PAPER) $< -o $@
+endef
+
+define gnuplot
+$(RM) $@
+@echo set terminal mf > gnuplot.do
+@echo set output '"'$@'"' >> gnuplot.do
+@cat $< >> gnuplot.do
+@echo cp $< gnuplot.do
+$(GNUPLOT) < gnuplot.do
+$(RM) gnuplot.do
+endef
+
+define mf
+$(RM) $@
+$(MF) '\mode=localfont; \mag=1; input $<'
+endef
+
+define gftopk
+$(RM) $@
+$(GFTOPK) $<
+endef
+
+define sed
+$(SED) -f $(SEDCMD) $@ > $(SEDTMP)
+mv $(SEDTMP) $@
+endef
+
+define makeindex
+$(MAKEINDEX) $(MAKEINDEXFLAGS) $<
+endef
+
+%.pdf:		%.tex
+		$(latex)
+
+%.mf:		%.$(DOPLOT)
+		$(gnuplot)
+
+%.$(RES1)gf:	%.mf
+		$(mf)
+		mv $(<:%.mf=%.$(RES2)gf) $@
+
+%.$(RES1)pk:	%.$(RES1)gf
+		$(gftopk)
+
+%.$(RES2)gf:	%.mf
+		$(mf)
+
+%.$(RES2)pk:	%.$(RES2)gf
+		$(gftopk)
+
+%.idx:		%.tex
+		$(latex)
+
+%.ind:		%.idx
+		$(makeindex)
+
+# vim:ai sw=2
+

@@ -1,13 +1,12 @@
 # erzeugt Samstag, 04. Juli 2015 14:04 (C) 2015 von Leander Jedamus
-# modifiziert Dienstag, 01. September 2015 12:17 von Leander Jedamus
+# modifiziert Dienstag, 01. September 2015 12:06 von Leander Jedamus
 # modifiziert Samstag, 15. August 2015 12:35 von Leander Jedamus
+// modifiziert Dienstag, 01. September 2015 12:07 von Leander Jedamus
 # modifiziert Mittwoch, 29. Juli 2015 13:28 von Leander Jedamus
 # modifiziert Freitag, 17. Juli 2015 20:37 von Leander Jedamus
 # modifiziert Dienstag, 14. Juli 2015 17:19 von Leander Jedamus
 # modifiziert Mittwoch, 08. Juli 2015 15:20 von Leander Jedamus
 # modifiziert Samstag, 04. Juli 2015 14:11 von Leander Jedamus
-
-include Makefile.tex
 
 SUFFIXES	:= .out .a .o .c .cc .C .y .l .s .S .h .dvi .tex .latex .ps .w .ch .sh .noweb .mf .ind .sgml .f .cob .1 .odt .html .pdf .ps .tfm
 .SUFFIXES	:= .out .a .o .c .cc .C .y .l .s .S .h .dvi .tex .latex .ps .w .ch .sh .noweb .mf .ind .sgml .f .cob .1 .odt .html .pdf .ps .tfm
@@ -34,10 +33,22 @@ RST2ODT		= rst2odt.py
 RST2HTML	= rst2html.py
 
 DEBUGGER	= gdb
+TEX		= tex
+LATEX		= pdflatex
+MAKEINDEX	= makeindex
+BIBTEX		= bibtex
+DVIPS		= dvips
+GS		= gs
 CWEAVE		= cweave
 CTANGLE		= ctangle
 NOWEAVE		= noweave
 NOTANGLE	= notangle
+GNUPLOT		= gnuplot
+MF		= mf
+GFTOPK		= gftopk
+SED		= sed
+PATCH		= patch
+TOUCH		= touch
 
 RM		= rm -f
 GENERATE	= ./generate2
@@ -56,7 +67,17 @@ DEPEND.c	= $(C.c) -MM
 DEPEND.cc	= $(C.cc) -MM
 
 NOWEAVE.latex	= $(NOWEAVE) -latex
+MAKEINDEX.idx	= $(MAKEINDEX) $(MAKEINDEXFLAGS)
+MAKEINDEXGST	= makeindex.gst
+MAKEINDEXIST	= makeindex.ist
+MAKEINDEXFLAGS	= -s makeindex.ist -g -l
+PAPER		= a4
+RES1		= 300
+RES2		= 600
+SEDCMD		= noweb2latex.sed
+SEDTMP		= sed.tmp
 RST		= rst
+DOPLOT		= doplot
 NOWEB		= nw
 
 CFLAGS		= #
@@ -175,6 +196,51 @@ $(RM) $@
 $(NOWEAVE) $< > $@
 endef
 
+define tex
+$(RM) $@
+$(TEX) $<
+endef
+
+define latex
+$(RM) $@
+$(LATEX) $<
+$(LATEX) $<
+endef
+
+define dvips
+$(RM) $@
+$(DVIPS) -t $(PAPER) $< -o $@
+endef
+
+define gnuplot
+$(RM) $@
+@echo set terminal mf > gnuplot.do
+@echo set output '"'$@'"' >> gnuplot.do
+@cat $< >> gnuplot.do
+@echo cp $< gnuplot.do
+$(GNUPLOT) < gnuplot.do
+$(RM) gnuplot.do
+endef
+
+define mf
+$(RM) $@
+$(MF) '\mode=localfont; \mag=1; input $<'
+endef
+
+define gftopk
+$(RM) $@
+$(GFTOPK) $<
+endef
+
+define sed
+$(SED) -f $(SEDCMD) $@ > $(SEDTMP)
+mv $(SEDTMP) $@
+endef
+
+define makeindex
+$(MAKEINDEX) $(MAKEINDEXFLAGS) $<
+endef
+
 define generate
 $(GENERATE) $<
 endef
@@ -200,6 +266,9 @@ endef
 
 %.tex:		%.$(RST)
 		$(rst2latex.txt)
+
+%.pdf:		%.tex
+		$(latex)
 
 %.html:		%.$(RST)
 		$(rst2html.txt)
@@ -252,6 +321,28 @@ endef
 %.tex:		%.$(NOWEB)
 		$(noweave)
 		$(sed)
+
+%.mf:		%.$(DOPLOT)
+		$(gnuplot)
+
+%.$(RES1)gf:	%.mf
+		$(mf)
+		mv $(<:%.mf=%.$(RES2)gf) $@
+
+%.$(RES1)pk:	%.$(RES1)gf
+		$(gftopk)
+
+%.$(RES2)gf:	%.mf
+		$(mf)
+
+%.$(RES2)pk:	%.$(RES2)gf
+		$(gftopk)
+
+%.idx:		%.tex
+		$(latex)
+
+%.ind:		%.idx
+		$(makeindex)
 
 OBJS		= #
 FILES		= Makefile
