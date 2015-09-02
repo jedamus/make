@@ -16,7 +16,6 @@ GS		= gs
 GNUPLOT		= gnuplot
 MF		= mf
 GFTOPK		= gftopk
-TOUCH		= touch
 
 MAKEINDEX.idx	= $(MAKEINDEX) $(MAKEINDEXFLAGS)
 MAKEINDEXGST	= makeindex.gst

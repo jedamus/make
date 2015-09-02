@@ -1,5 +1,5 @@
 # erzeugt Samstag, 04. Juli 2015 14:04 (C) 2015 von Leander Jedamus
-# modifiziert Mittwoch, 02. September 2015 14:38 von Leander Jedamus
+# modifiziert Mittwoch, 02. September 2015 14:44 von Leander Jedamus
 # modifiziert Dienstag, 01. September 2015 18:11 von Leander Jedamus
 # modifiziert Samstag, 15. August 2015 12:35 von Leander Jedamus
 # modifiziert Mittwoch, 29. Juli 2015 13:28 von Leander Jedamus
@@ -25,6 +25,7 @@ DEBUGGER	= gdb
 RM		= rm -f
 GENERATE	= ./generate2
 PRINT		= print
+TOUCH		= touch
 
 COPTS		= $(DFLAGS) $(CPPFLAGS) $(IFLAGS) $(TARGET_ARCH)
 LOPTS		= $(CPPFLAGS) $(LDFLAGS) $(TARGET_ARCH)
@@ -259,7 +260,7 @@ clean:
 
 print:		$(FILES)
 		$(PRINT) $?
-		touch print
+		$(TOUCH) print
 
 .PHONY:		dummy
 dummy:
