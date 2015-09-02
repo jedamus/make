@@ -1,4 +1,5 @@
 # erzeugt Samstag, 04. Juli 2015 14:04 (C) 2015 von Leander Jedamus
+# modifiziert Mittwoch, 02. September 2015 14:38 von Leander Jedamus
 # modifiziert Dienstag, 01. September 2015 18:11 von Leander Jedamus
 # modifiziert Samstag, 15. August 2015 12:35 von Leander Jedamus
 # modifiziert Mittwoch, 29. Juli 2015 13:28 von Leander Jedamus
@@ -12,20 +13,13 @@ SUFFIXES	:= .out .a .o .c .cc .C .y .l .s .S .h .dvi .tex .latex .ps .w .ch .sh 
 
 include Makefile.latex
 include Makefile.flex_and_bison
-include Makefile.c_and_noweb
+include Makefile.cweb_and_noweb
 include Makefile.documentation
+include Makefile.cobol
+include Makefile.FORTRAN
 
 CC		= gcc # cc
 CXX		= g++
-
-FORTRANC        = mpifort
-
-COBOLC          = cobc
-#COBCWARN	= -W
-COBCWARN	=
-#COBCFREE	= -free
-COBCFREE	=
-
 
 DEBUGGER	= gdb
 RM		= rm -f
@@ -37,8 +31,6 @@ LOPTS		= $(CPPFLAGS) $(LDFLAGS) $(TARGET_ARCH)
 C.c		= $(CC) $(strip $(CFLAGS) $(COPTS))
 C.cc		= $(CXX) $(strip $(CXXFLAGS) $(COPTS))
 COMPILE.c	= $(C.c) -c
-COMPILE.f	= $(FORTRANC)
-COMPILE.cob	= $(COBOLC)
 COMPILE.cc	= $(C.cc) -c
 LINK.c		= $(CC) $(strip $(CFLAGS) $(LOPTS))
 LINK.cc		= $(CXX) $(strip $(CXXFLAGS) $(LOPTS))
@@ -67,16 +59,6 @@ CLEAN		= #
 define compile.c
 $(RM) $@
 $(COMPILE.c) $< $(OUTPUT_OPTION)
-endef
-
-define compile.f
-$(RM) $@
-$(COMPILE.f) -c $< -o $@
-endef
-
-define compile.cob
-$(RM) $@
-$(COMPILE.cob) $(COBCFREE) $(COBCWARN) -c $< -o $@
 endef
 
 define compile.cc
@@ -108,12 +90,6 @@ endef
 
 %.o:		%.c
 		$(compile.c)
-
-%.o:		%.f
-		$(compile.f)
-
-%.o:		%.cob
-		$(compile.cob)
 
 %.o:		%.cc
 		$(compile.cc)
@@ -279,7 +255,7 @@ all.pdf:	all.tex
 .PHONY:		clean
 clean:
 		$(RM) $(CLEAN)
-		rm -rf check.dSYM
+		$(RM) -r check.dSYM
 
 print:		$(FILES)
 		$(PRINT) $?
