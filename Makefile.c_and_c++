@@ -1,0 +1,53 @@
+# erzeugt Samstag, 04. Juli 2015 14:04 (C) 2015 von Leander Jedamus
+# modifiziert Montag, 21. September 2015 11:13 von Leander Jedamus
+# modifiziert Mittwoch, 02. September 2015 14:44 von Leander Jedamus
+# modifiziert Dienstag, 01. September 2015 18:11 von Leander Jedamus
+# modifiziert Samstag, 15. August 2015 12:35 von Leander Jedamus
+# modifiziert Mittwoch, 29. Juli 2015 13:28 von Leander Jedamus
+# modifiziert Freitag, 17. Juli 2015 20:37 von Leander Jedamus
+# modifiziert Dienstag, 14. Juli 2015 17:19 von Leander Jedamus
+# modifiziert Mittwoch, 08. Juli 2015 15:20 von Leander Jedamus
+# modifiziert Samstag, 04. Juli 2015 14:11 von Leander Jedamus
+
+CC		= gcc # cc
+CXX		= g++
+
+COPTS		= $(DFLAGS) $(CPPFLAGS) $(IFLAGS) $(TARGET_ARCH)
+LOPTS		= $(CPPFLAGS) $(LDFLAGS) $(TARGET_ARCH)
+C.c		= $(CC) $(strip $(CFLAGS) $(COPTS))
+C.cc		= $(CXX) $(strip $(CXXFLAGS) $(COPTS))
+COMPILE.c	= $(C.c) -c
+COMPILE.cc	= $(C.cc) -c
+LINK.c		= $(CC) $(strip $(CFLAGS) $(LOPTS))
+LINK.cc		= $(CXX) $(strip $(CXXFLAGS) $(LOPTS))
+DEPEND.c	= $(C.c) -MM
+DEPEND.cc	= $(C.cc) -MM
+
+define compile.c
+$(RM) $@
+$(COMPILE.c) $< $(OUTPUT_OPTION)
+endef
+
+define compile.cc
+$(RM) $@
+$(COMPILE.cc) $< $(OUTPUT_OPTION)
+endef
+
+define link.c
+$(RM) $@
+$(LINK.c) $^ $(LOADLIBES) -o $@ $(LDLIBS)
+endef
+
+define link.cc
+$(RM) $@
+$(LINK.cc) $^ $(LOADLIBES) -o $@ $(LDLIBS)
+endef
+
+%.o:		%.c
+		$(compile.c)
+
+%.o:		%.cc
+		$(compile.cc)
+
+# vim:ai sw=2
+

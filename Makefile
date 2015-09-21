@@ -1,4 +1,5 @@
 # erzeugt Samstag, 04. Juli 2015 14:04 (C) 2015 von Leander Jedamus
+# modifiziert Montag, 21. September 2015 11:16 von Leander Jedamus
 # modifiziert Mittwoch, 02. September 2015 14:44 von Leander Jedamus
 # modifiziert Dienstag, 01. September 2015 18:11 von Leander Jedamus
 # modifiziert Samstag, 15. August 2015 12:35 von Leander Jedamus
@@ -11,6 +12,7 @@
 SUFFIXES	:= .out .a .o .c .cc .C .y .l .s .S .h .dvi .tex .latex .ps .w .ch .sh .noweb .mf .ind .sgml .f .cob .1 .odt .html .pdf .ps .tfm
 .SUFFIXES	:= .out .a .o .c .cc .C .y .l .s .S .h .dvi .tex .latex .ps .w .ch .sh .noweb .mf .ind .sgml .f .cob .1 .odt .html .pdf .ps .tfm
 
+include Makefile.c_and_c++
 include Makefile.latex
 include Makefile.flex_and_bison
 include Makefile.cweb_and_noweb
@@ -18,25 +20,11 @@ include Makefile.documentation
 include Makefile.cobol
 include Makefile.FORTRAN
 
-CC		= gcc # cc
-CXX		= g++
-
 DEBUGGER	= gdb
 RM		= rm -f
 GENERATE	= ./generate2
 PRINT		= print
 TOUCH		= touch
-
-COPTS		= $(DFLAGS) $(CPPFLAGS) $(IFLAGS) $(TARGET_ARCH)
-LOPTS		= $(CPPFLAGS) $(LDFLAGS) $(TARGET_ARCH)
-C.c		= $(CC) $(strip $(CFLAGS) $(COPTS))
-C.cc		= $(CXX) $(strip $(CXXFLAGS) $(COPTS))
-COMPILE.c	= $(C.c) -c
-COMPILE.cc	= $(C.cc) -c
-LINK.c		= $(CC) $(strip $(CFLAGS) $(LOPTS))
-LINK.cc		= $(CXX) $(strip $(CXXFLAGS) $(LOPTS))
-DEPEND.c	= $(C.c) -MM
-DEPEND.cc	= $(C.cc) -MM
 
 CFLAGS		= #
 CPPFLAGS	= -Wall -g
@@ -57,26 +45,6 @@ LDLIBS		+= -ll # lex
 LDLIBS		+= -ly # yacc
 CLEAN		= #
 
-define compile.c
-$(RM) $@
-$(COMPILE.c) $< $(OUTPUT_OPTION)
-endef
-
-define compile.cc
-$(RM) $@
-$(COMPILE.cc) $< $(OUTPUT_OPTION)
-endef
-
-define link.c
-$(RM) $@
-$(LINK.c) $^ $(LOADLIBES) -o $@ $(LDLIBS)
-endef
-
-define link.cc
-$(RM) $@
-$(LINK.cc) $^ $(LOADLIBES) -o $@ $(LDLIBS)
-endef
-
 define debug
 $(DEBUGGER)
 endef
@@ -88,12 +56,6 @@ endef
 define print
 $(PRINT) $<
 endef
-
-%.o:		%.c
-		$(compile.c)
-
-%.o:		%.cc
-		$(compile.cc)
 
 %.cc:		%.txt
 		$(generate)
