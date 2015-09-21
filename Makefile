@@ -1,5 +1,5 @@
 # erzeugt Samstag, 04. Juli 2015 14:04 (C) 2015 von Leander Jedamus
-# modifiziert Montag, 21. September 2015 11:16 von Leander Jedamus
+# modifiziert Montag, 21. September 2015 12:41 von Leander Jedamus
 # modifiziert Mittwoch, 02. September 2015 14:44 von Leander Jedamus
 # modifiziert Dienstag, 01. September 2015 18:11 von Leander Jedamus
 # modifiziert Samstag, 15. August 2015 12:35 von Leander Jedamus
@@ -132,11 +132,12 @@ GLOFILE3	= $(LATEXFILES3:%.tex=%.glo)
 GLSFILE3	= $(LATEXFILES3:%.tex=%.gls)
 CLEAN		+= $(LATEXFILES3:%.tex=%.aux)
 CLEAN		+= $(INCLATEXFILES3:%.tex=%.aux)
-CLEAN		+= $(IDXFILE3) $(GLOFILE3) $(GLSFILE3) $(PDFFILES3)
+CLEAN		+= $(IDXFILE3) $(GLOFILE3) $(GLSFILE3)
+#CLEAN		+= $(PDFFILES3)
 CLEAN		+= $(LATEXFILES3:%.tex=%.toc)
 CLEAN		+= $(LATEXFILES3:%.tex=%.ilg)
 CLEAN		+= $(LATEXFILES3:%.tex=%.ind)
-CLEAN		+= $(LATEXFILES3:%.tex=%.pdf)
+#CLEAN		+= $(LATEXFILES3:%.tex=%.pdf)
 CLEAN		+= $(LATEXFILES3:%.tex=%.out)
 CLEAN		+= $(LATEXFILES3:%.tex=%.log)
 
