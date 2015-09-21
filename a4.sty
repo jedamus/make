@@ -1,0 +1,11 @@
+   \if@twocolumn \textwidth175mm \marginparsep2.5mm 
+                 \oddsidemargin-7.9mm \evensidemargin-7.9mm
+   \else  \ifcase \@ptsize\relax
+          \textwidth146mm \oddsidemargin7.1mm  \evensidemargin7.1mm \or 
+          \textwidth154mm \oddsidemargin2.6mm  \evensidemargin2.6mm \or
+          \textwidth164mm \oddsidemargin-2.4mm \evensidemargin-2.4mm \fi
+          \marginparsep4mm \fi
+   \ifcase \@ptsize\relax \textheight 59\baselineskip  \or
+                          \textheight 52\baselineskip  \or 
+                          \textheight 49\baselineskip  \fi
+   \addtolength{\textheight}{\topskip} \topmargin-15mm
