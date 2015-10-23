@@ -1,4 +1,5 @@
 # erzeugt Samstag, 04. Juli 2015 14:04 (C) 2015 von Leander Jedamus
+# modifiziert Freitag, 23. Oktober 2015 12:39 von Leander Jedamus
 # modifiziert Montag, 21. September 2015 12:41 von Leander Jedamus
 # modifiziert Mittwoch, 02. September 2015 14:44 von Leander Jedamus
 # modifiziert Dienstag, 01. September 2015 18:11 von Leander Jedamus
@@ -193,7 +194,7 @@ dachflaeche:	$(FOBJS)
 		$(FORTRANC) $(FOBJS) -o $@
 
 helloworld:	$(COBOBJS)
-		$(COBOLC) -x $(COBFILES) -o $@
+		$(COMPILE.cob) -x $(COBFILES) -o $@
 
 calc:		$(YACCOBJS) $(LEXOBJS)
 		$(link.c)

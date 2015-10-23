@@ -14,7 +14,7 @@ COBCWARN	=
 #COBCFREE	= -free
 COBCFREE	=
 
-COMPILE.cob	= $(COBOLC)
+COMPILE.cob	= $(COBOLC) -I /usr/local/include -L /usr/local/lib
 
 define compile.cob
 $(RM) $@
