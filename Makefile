@@ -1,5 +1,5 @@
 # erzeugt Samstag, 04. Juli 2015 14:04 (C) 2015 von Leander Jedamus
-# modifiziert Montag, 08. Februar 2016 09:17 von Leander Jedamus
+# modifiziert Montag, 08. Februar 2016 15:26 von Leander Jedamus
 # modifiziert Freitag, 23. Oktober 2015 12:39 von Leander Jedamus
 # modifiziert Montag, 21. September 2015 12:41 von Leander Jedamus
 # modifiziert Mittwoch, 02. September 2015 14:44 von Leander Jedamus
@@ -219,9 +219,14 @@ all.pdf:	all.tex
 		$(latex)
 
 .PHONY:		clean
+ifeq ($(machtype),MacOS)
 clean:
 		$(RM) $(CLEAN)
 		$(RM) -r check.dSYM
+else
+clean:
+		$(RM) $(CLEAN)
+endif
 
 print:		$(FILES)
 		$(PRINT) $?
