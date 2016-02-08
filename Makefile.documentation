@@ -9,10 +9,18 @@
 
 POD2MAN		= pod2man
 GROFF		= groff
+
+ifeq ($(machtype),Linux)
+RST2MAN		= rst2man
+RST2LATEX	= rst2latex
+RST2ODT		= rst2odt
+RST2HTML	= rst2html
+else
 RST2MAN		= rst2man.py
 RST2LATEX	= rst2latex.py
 RST2ODT		= rst2odt.py
 RST2HTML	= rst2html.py
+endif
 
 RST		= rst
 

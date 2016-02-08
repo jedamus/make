@@ -8,7 +8,11 @@
 # modifiziert Mittwoch, 08. Juli 2015 15:20 von Leander Jedamus
 # modifiziert Samstag, 04. Juli 2015 14:11 von Leander Jedamus
 
+ifeq ($(machtype),Linux)
+FORTRANC	= gfortran
+else
 FORTRANC        = mpifort
+endif
 
 COMPILE.f	= $(FORTRANC)
 
