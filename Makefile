@@ -245,5 +245,5 @@ rezepte.pdf:	$(INCLATEXFILES3) $(INCREZEPTFILES)
 ifeq (.depend,$(wildcard .depend))
 include .depend
 endif
-# vim:ai sw=2
 
+# vim:ai sw=2 sts=8
