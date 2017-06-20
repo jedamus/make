@@ -29,5 +29,4 @@ endef
 %.tab.c:	%.y
 		$(yacc.y)
 
-# vim:ai sw=2
-
+# vim:ai sw=2 sts=8
