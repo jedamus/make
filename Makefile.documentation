@@ -72,5 +72,4 @@ endef
 %.odt:		%.$(RST)
 		$(rst2odt.txt)
 
-# vim:ai sw=2
-
+# vim:ai sw=2 sts=8
