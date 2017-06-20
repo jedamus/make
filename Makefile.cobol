@@ -24,5 +24,4 @@ endef
 %.o:		%.cob
 		$(compile.cob)
 
-# vim:ai sw=2
-
+# vim:ai sw=2 sts=8
