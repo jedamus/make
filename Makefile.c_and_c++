@@ -49,5 +49,4 @@ endef
 %.o:		%.cc
 		$(compile.cc)
 
-# vim:ai sw=2
-
+# vim:ai sw=2 sts=8
