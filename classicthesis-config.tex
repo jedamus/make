@@ -1,5 +1,6 @@
 % ****************************************************************************************************
 % classicthesis-config.tex 
+% modifiziert Montag, 05. März 2018 14:19 von Leander Jedamus
 % modifiziert Samstag, 28. Februar 2015 17:42 von Leander Jedamus
 % formerly known as loadpackages.sty, classicthesis-ldpkg.sty, and classicthesis-preamble.sty 
 % Use it at the beginning of your ClassicThesis.tex, or as a LaTeX Preamble 
@@ -100,7 +101,7 @@
 \PassOptionsToPackage{printonlyused,smaller}{acronym}
 	\usepackage{acronym} % nice macros for handling all acronyms in the thesis
 %\renewcommand*{\acsfont}[1]{\textssc{#1}} % for MinionPro
-\renewcommand{\bflabel}[1]{{#1}\hfill} % fix the list of acronyms
+\newcommand{\bflabel}[1]{{#1}\hfill} % fix the list of acronyms
 % ****************************************************************************************************
 
 
