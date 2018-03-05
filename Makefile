@@ -1,4 +1,5 @@
 # erzeugt Samstag, 04. Juli 2015 14:04 (C) 2015 von Leander Jedamus
+# modifiziert Montag, 05. März 2018 13:34 von Leander Jedamus
 # modifiziert Mittwoch, 24. Februar 2016 13:05 von Leander Jedamus
 # modifiziert Dienstag, 16. Februar 2016 09:17 von Leander Jedamus
 # modifiziert Montag, 08. Februar 2016 15:26 von Leander Jedamus
@@ -145,25 +146,43 @@ CLEAN		+= $(LATEXFILES3:%.tex=%.ind)
 CLEAN		+= $(LATEXFILES3:%.tex=%.out)
 CLEAN		+= $(LATEXFILES3:%.tex=%.log)
 
-LATEXFILES4	= all.tex
+LATEXFILES4	= konfituere.tex
+INCLATEXFILES4	= konfituere_getraenke.tex  konfituere_konfituere.tex
+INCLATEXFILES4	+= konfituere_marmeladen_und_gelees_2.tex
+INCLATEXFILES4	+= konfituere_marmeladen_und_gelees.tex  konfituere_title.tex
+
 PDFFILES4	= $(LATEXFILES4:%.tex=%.pdf)
-BIBFILE4	= $(LATEXFILES4:%.tex=%)
 IDXFILE4	= $(LATEXFILES4:%.tex=%.idx)
-GLOFILE4	= $(LATEXFILES4:%.tex=%.glo)
-GLSFILE4	= $(LATEXFILES4:%.tex=%.gls)
-CLEAN		+= missfont.log
-CLEAN		+= $(IDXFILE4) $(GLOFILE4) $(GLSFILE4) $(PDFFILES4)
 CLEAN		+= $(LATEXFILES4:%.tex=%.aux)
+CLEAN		+= $(INCLATEXFILES4:%.tex=%.aux)
+CLEAN		+= $(IDXFILE4)
+#CLEAN		+= $(PDFFILES4)
 CLEAN		+= $(LATEXFILES4:%.tex=%.toc)
 CLEAN		+= $(LATEXFILES4:%.tex=%.ilg)
 CLEAN		+= $(LATEXFILES4:%.tex=%.ind)
-CLEAN		+= $(LATEXFILES4:%.tex=%.bbl)
-CLEAN		+= $(LATEXFILES4:%.tex=%.blg)
-CLEAN		+= $(LATEXFILES4:%.tex=%.pdf)
+#CLEAN		+= $(LATEXFILES4:%.tex=%.pdf)
 CLEAN		+= $(LATEXFILES4:%.tex=%.out)
 CLEAN		+= $(LATEXFILES4:%.tex=%.log)
-CLEAN		+= $(LATEXFILES4:%.tex=%.lof)
-CLEAN		+= $(LATEXFILES4:%.tex=%.lot)
+
+LATEXFILES5	= all.tex
+PDFFILES5	= $(LATEXFILES5:%.tex=%.pdf)
+BIBFILE5	= $(LATEXFILES5:%.tex=%)
+IDXFILE5	= $(LATEXFILES5:%.tex=%.idx)
+GLOFILE5	= $(LATEXFILES5:%.tex=%.glo)
+GLSFILE5	= $(LATEXFILES5:%.tex=%.gls)
+CLEAN		+= missfont.log
+CLEAN		+= $(IDXFILE5) $(GLOFILE5) $(GLSFILE5) $(PDFFILES5)
+CLEAN		+= $(LATEXFILES5:%.tex=%.aux)
+CLEAN		+= $(LATEXFILES5:%.tex=%.toc)
+CLEAN		+= $(LATEXFILES5:%.tex=%.ilg)
+CLEAN		+= $(LATEXFILES5:%.tex=%.ind)
+CLEAN		+= $(LATEXFILES5:%.tex=%.bbl)
+CLEAN		+= $(LATEXFILES5:%.tex=%.blg)
+CLEAN		+= $(LATEXFILES5:%.tex=%.pdf)
+CLEAN		+= $(LATEXFILES5:%.tex=%.out)
+CLEAN		+= $(LATEXFILES5:%.tex=%.log)
+CLEAN		+= $(LATEXFILES5:%.tex=%.lof)
+CLEAN		+= $(LATEXFILES5:%.tex=%.lot)
 
 PLOTFILES	= plot_sinh.$(DOPLOT)
 FILES		+= $(PLOTFILES)
@@ -190,7 +209,7 @@ CLEAN		+= mycopy.1 mycopy.ps
 all::		$(PROGRAMS)
 		@echo done.
 
-doc:		$(PSFILE1) $(MANFILE1) $(MANFILE2) $(HTMLFILE) $(ODTFILE) $(PDFFILES) $(PDFFILES2) $(PKFILES) $(PDFFILES3) $(PDFFILES4)
+doc:		$(PSFILE1) $(MANFILE1) $(MANFILE2) $(HTMLFILE) $(ODTFILE) $(PDFFILES) $(PDFFILES2) $(PKFILES) $(PDFFILES3) $(PDFFILES4) $(PDFFILES5)
 		@echo done.
 
 dachflaeche:	$(FOBJS)
@@ -205,19 +224,32 @@ calc:		$(YACCOBJS) $(LEXOBJS)
 check:		$(NOWEBCFILES)
 		$(link.c)
 
-rezepte.pdf:	rezepte.tex
+rezepte.pass1:	
 		$(TOUCH) $(GLSFILE3)
-		$(latex)
+		pdflatex rezepte.tex
+		touch rezepte.pass1
+
+rezepte.pdf:	rezepte.pass1 rezepte.tex $(INCLATEXFILES3)
+		pdflatex rezepte.tex
 		$(MAKEINDEX) -s $(MAKEINDEXGST) -g $(GLOFILE3) -o $(GLSFILE3)
 		$(MAKEINDEX) -g -s $(MAKEINDEXIST) $(IDXFILE3)
-		$(latex)
+		pdflatex rezepte.tex
+
+konfituere.pass1:	
+		    pdflatex konfituere.tex
+		    touch konfituere.pass1
+
+konfituere.pdf:	konfituere.pass1 konfituere.tex $(INCLATEXFILES4)
+		pdflatex konfituere.tex
+		$(MAKEINDEX) -g -s $(MAKEINDEXIST) $(IDXFILE4)
+		pdflatex konfituere.tex
 
 all.pdf:	all.tex
-		$(TOUCH) $(GLSFILE4)
+		$(TOUCH) $(GLSFILE5)
 		$(latex)
-		$(BIBTEX) $(BIBFILE4)
-		$(MAKEINDEX) -s $(MAKEINDEXGST) -g $(GLOFILE4) -o $(GLSFILE4)
-		$(MAKEINDEX) -g -s $(MAKEINDEXIST) $(IDXFILE4)
+		$(BIBTEX) $(BIBFILE5)
+		$(MAKEINDEX) -s $(MAKEINDEXGST) -g $(GLOFILE5) -o $(GLSFILE5)
+		$(MAKEINDEX) -g -s $(MAKEINDEXIST) $(IDXFILE5)
 		$(latex)
 
 .PHONY:		clean
@@ -245,5 +277,10 @@ rezepte.pdf:	$(INCLATEXFILES3) $(INCREZEPTFILES)
 ifeq (.depend,$(wildcard .depend))
 include .depend
 endif
+<<<<<<< HEAD
+
+# vim:ai sw=2 noexpandtab
+=======
+>>>>>>> df5eb5a4a8a2c98f3c3002ccf2b6d42b2d7e85d7
 
 # vim:ai sw=2 sts=8
