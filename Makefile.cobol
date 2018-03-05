@@ -24,9 +24,5 @@ endef
 %.o:		%.cob
 		$(compile.cob)
 
-<<<<<<< HEAD
 # vim:ai sw=2 noexpandtab
 
-=======
-# vim:ai sw=2 sts=8
->>>>>>> df5eb5a4a8a2c98f3c3002ccf2b6d42b2d7e85d7
