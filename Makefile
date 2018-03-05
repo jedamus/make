@@ -1,5 +1,5 @@
 # erzeugt Samstag, 04. Juli 2015 14:04 (C) 2015 von Leander Jedamus
-# modifiziert Montag, 05. März 2018 13:34 von Leander Jedamus
+# modifiziert Montag, 05. März 2018 13:49 von Leander Jedamus
 # modifiziert Mittwoch, 24. Februar 2016 13:05 von Leander Jedamus
 # modifiziert Dienstag, 16. Februar 2016 09:17 von Leander Jedamus
 # modifiziert Montag, 08. Februar 2016 15:26 von Leander Jedamus
@@ -277,10 +277,6 @@ rezepte.pdf:	$(INCLATEXFILES3) $(INCREZEPTFILES)
 ifeq (.depend,$(wildcard .depend))
 include .depend
 endif
-<<<<<<< HEAD
 
 # vim:ai sw=2 noexpandtab
-=======
->>>>>>> df5eb5a4a8a2c98f3c3002ccf2b6d42b2d7e85d7
 
-# vim:ai sw=2 sts=8
