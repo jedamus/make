@@ -1,5 +1,5 @@
 # erzeugt Samstag, 04. Juli 2015 14:04 (C) 2015 von Leander Jedamus
-# modifiziert Dienstag, 06. März 2018 19:08 von Leander Jedamus
+# modifiziert Dienstag, 06. März 2018 19:26 von Leander Jedamus
 # modifiziert Montag, 05. März 2018 15:57 von Leander Jedamus
 # modifiziert Montag, 05. Maerz 2018 13:49 von Leander Jedamus
 # modifiziert Mittwoch, 24. Februar 2016 13:05 von Leander Jedamus
@@ -230,9 +230,9 @@ calc:			$(YACCOBJS) $(LEXOBJS)
 check:			$(NOWEBCFILES)
 			$(link.c)
 
-$(LATEXFILES3PASS1):	$(LATEXFILES3)
+$(LATEXFILES3PASS1):
 			$(TOUCH) $(GLSFILE3)
-			$(latex)
+			pdflatex $(LATEXFILES3)
 			$(TOUCH) $(LATEXFILES3PASS1)
 
 rezepte.pdf:		$(LATEXFILES3) $(LATEXFILES3PASS1) $(INCLATEXFILES3)
@@ -242,7 +242,7 @@ rezepte.pdf:		$(LATEXFILES3) $(LATEXFILES3PASS1) $(INCLATEXFILES3)
 			$(latex)
 
 $(LATEXFILES4PASS1):	$(LATEXFILES4)
-			$(latex)
+			pdflatex $(LATEXFILES4)
 			$(TOUCH) $(LATEXFILES4PASS1)
 
 konfituere.pdf:		$(LATEXFILES4) $(LATEXFILES4PASS1) $(INCLATEXFILES4)
