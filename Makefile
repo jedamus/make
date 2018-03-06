@@ -1,5 +1,7 @@
 # erzeugt Samstag, 04. Juli 2015 14:04 (C) 2015 von Leander Jedamus
-# modifiziert Montag, 05. März 2018 13:49 von Leander Jedamus
+# modifiziert Dienstag, 06. März 2018 18:18 von Leander Jedamus
+# modifiziert Montag, 05. März 2018 15:57 von Leander Jedamus
+# modifiziert Montag, 05. Maerz 2018 13:49 von Leander Jedamus
 # modifiziert Mittwoch, 24. Februar 2016 13:05 von Leander Jedamus
 # modifiziert Dienstag, 16. Februar 2016 09:17 von Leander Jedamus
 # modifiziert Montag, 08. Februar 2016 15:26 von Leander Jedamus
@@ -145,6 +147,7 @@ CLEAN		+= $(LATEXFILES3:%.tex=%.ind)
 #CLEAN		+= $(LATEXFILES3:%.tex=%.pdf)
 CLEAN		+= $(LATEXFILES3:%.tex=%.out)
 CLEAN		+= $(LATEXFILES3:%.tex=%.log)
+CLEAN		+= rezepte.pass1
 
 LATEXFILES4	= konfituere.tex
 INCLATEXFILES4	= konfituere_getraenke.tex  konfituere_konfituere.tex
@@ -163,6 +166,7 @@ CLEAN		+= $(LATEXFILES4:%.tex=%.ind)
 #CLEAN		+= $(LATEXFILES4:%.tex=%.pdf)
 CLEAN		+= $(LATEXFILES4:%.tex=%.out)
 CLEAN		+= $(LATEXFILES4:%.tex=%.log)
+CLEAN		+= konfituere.pass1
 
 LATEXFILES5	= all.tex
 PDFFILES5	= $(LATEXFILES5:%.tex=%.pdf)
