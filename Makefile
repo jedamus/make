@@ -1,5 +1,5 @@
 # erzeugt Samstag, 04. Juli 2015 14:04 (C) 2015 von Leander Jedamus
-# modifiziert Dienstag, 06. März 2018 18:51 von Leander Jedamus
+# modifiziert Dienstag, 06. März 2018 19:08 von Leander Jedamus
 # modifiziert Montag, 05. März 2018 15:57 von Leander Jedamus
 # modifiziert Montag, 05. Maerz 2018 13:49 von Leander Jedamus
 # modifiziert Mittwoch, 24. Februar 2016 13:05 von Leander Jedamus
@@ -230,25 +230,25 @@ calc:			$(YACCOBJS) $(LEXOBJS)
 check:			$(NOWEBCFILES)
 			$(link.c)
 
-rezepte.pass1:	
+$(LATEXFILES3PASS1):	$(LATEXFILES3)
 			$(TOUCH) $(GLSFILE3)
-			pdflatex rezepte.tex
-			touch rezepte.pass1
+			$(latex)
+			$(TOUCH) $(LATEXFILES3PASS1)
 
-rezepte.pdf:		rezepte.pass1 rezepte.tex $(INCLATEXFILES3)
-			pdflatex rezepte.tex
+rezepte.pdf:		$(LATEXFILES3) $(LATEXFILES3PASS1) $(INCLATEXFILES3)
+			$(latex)
 			$(MAKEINDEX) -s $(MAKEINDEXGST) -g $(GLOFILE3) -o $(GLSFILE3)
 			$(MAKEINDEX) -g -s $(MAKEINDEXIST) $(IDXFILE3)
-			pdflatex rezepte.tex
+			$(latex)
 
-konfituere.pass1:	
-			pdflatex konfituere.tex
-			touch konfituere.pass1
+$(LATEXFILES4PASS1):	$(LATEXFILES4)
+			$(latex)
+			$(TOUCH) $(LATEXFILES4PASS1)
 
-konfituere.pdf:		konfituere.pass1 konfituere.tex $(INCLATEXFILES4)
-			pdflatex konfituere.tex
+konfituere.pdf:		$(LATEXFILES4) $(LATEXFILES4PASS1) $(INCLATEXFILES4)
+			$(latex)
 			$(MAKEINDEX) -g -s $(MAKEINDEXIST) $(IDXFILE4)
-			pdflatex konfituere.tex
+			$(latex)
 
 all.pdf:		all.tex
 			$(TOUCH) $(GLSFILE5)
@@ -275,7 +275,6 @@ dummy:
 dachflaeche.f:		helper.o
 yylval.l:		grammar.tab.o
 check.c:		check.h
-rezepte.pdf:		$(INCLATEXFILES3) $(INCREZEPTFILES)
 
 #
 # include a dependency file if one exists

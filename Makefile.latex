@@ -34,7 +34,6 @@ endef
 define latex
 $(RM) $@
 $(LATEX) $<
-$(LATEX) $<
 endef
 
 define dvips
