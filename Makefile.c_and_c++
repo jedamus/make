@@ -10,6 +10,7 @@
 # modifiziert Samstag, 04. Juli 2015 14:11 von Leander Jedamus
 
 CC		= gcc # cc
+AR		= ar
 CXX		= g++
 
 COPTS		= $(DFLAGS) $(CPPFLAGS) $(IFLAGS) $(TARGET_ARCH)
