@@ -17,6 +17,8 @@ classicthesis.sty
 
 *.o
 *.mod
+check.dSYM
+*.a
 
 all.pdf
 
@@ -41,3 +43,4 @@ check
 calc
 dachflaeche
 helloworld
+libtest
