@@ -1,5 +1,5 @@
 # erzeugt Samstag, 04. Juli 2015 14:04 (C) 2015 von Leander Jedamus
-# modifiziert Mittwoch, 04. Juli 2018 19:46 von Leander Jedamus
+# modifiziert Mittwoch, 04. Juli 2018 20:52 von Leander Jedamus
 # modifiziert Dienstag, 06. März 2018 19:26 von Leander Jedamus
 # modifiziert Montag, 05. März 2018 15:57 von Leander Jedamus
 # modifiziert Montag, 05. Maerz 2018 13:49 von Leander Jedamus
@@ -92,6 +92,17 @@ LEXOBJS			= $(LEXFILES:%.l=%.o)
 OBJS			+= $(LEXOBJS)
 YACCOBJS		= $(YACCCFILES:%.c=%.o)
 OBJS			+= $(YACCOBJS)
+
+CLIBFILES		= lib1.c lib2.c
+HLIBFILES		= $(CLIBFILES:%.c=%.h)
+LIBOBJS			= $(CLIBFILES:%.c=%.o)
+OBJS			+= $(LIBOBJS)
+LIBRARYNAME		= test
+LIBRARY			= lib$(LIBRARYNAME).a
+CLEAN			+= $(LIBRARY)
+CMAINFILE		= main.c
+MAINOBJS		= $(CMAINFILE:%.c=%.o)
+OBJS			+= $(MAINOBJS)
 
 PODFILE			= mycopy.pl
 FILES			+= $(PODFILE)
@@ -209,7 +220,9 @@ PROGRAM1		= dachflaeche
 PROGRAM2		= calc
 PROGRAM3		= helloworld
 PROGRAM4		= check
+PROGRAM5		= libtest
 PROGRAMS		= $(PROGRAM1) $(PROGRAM2) $(PROGRAM3) $(PROGRAM4)
+PROGRAMS		+= $(PROGRAM5)
 CLEAN			+= $(OBJS) $(PROGRAMS)
 CLEAN			+= mycopy.1 mycopy.ps
 
@@ -231,6 +244,12 @@ calc:			$(YACCOBJS) $(LEXOBJS)
 
 check:			$(NOWEBCFILES)
 			$(link.c)
+
+$(LIBRARY):		$(LIBOBJS)
+			$(AR) r $@ $^
+
+libtest:		$(LIBRARY) $(MAINOBJS)
+			$(LINK.c) $(MAINOBJS) -L. -l$(LIBRARYNAME) -o $@
 
 $(LATEXFILES3PASS1):
 			$(TOUCH) $(GLSFILE3)
