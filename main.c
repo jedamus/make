@@ -1,8 +1,9 @@
-// This may look like C code, but it is really -*- C++ -*-
-// main.c
-// erzeugt Freitag, 29. Juni 2018 17:28 (C) 2018 von Leander Jedamus
-// modifiziert Mittwoch, 04. Juli 2018 20:09 von Leander Jedamus
-// modifiziert Freitag, 29. Juni 2018 17:33 von Leander Jedamus
+/* -*- C -*- */
+/* main.c */
+/* erzeugt Freitag, 29. Juni 2018 17:28 (C) 2018 von Leander Jedamus */
+/* modifiziert Montag, 09. Juli 2018 10:44 von Leander Jedamus */
+/* modifiziert Mittwoch, 04. Juli 2018 20:09 von Leander Jedamus */
+/* modifiziert Freitag, 29. Juni 2018 17:33 von Leander Jedamus */
 
 static const char* sccsid =
 "@(#) main.c, (C) 2018 by Leander Jedamus";
@@ -22,5 +23,5 @@ void dummym() {
   printf("%s",sccsid);
 }
 
-// vim:cindent ai sw=2
+/* vim:set cindent ai sw=2: */
 

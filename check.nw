@@ -23,19 +23,19 @@ int
 main(int argc, char * argv[])
 {
   exit(0);
-};// main
+};/* main */
 
 <<check.h>>=
 <<header>>
 <<footer>>
 
 <<header>>=
-// -*- C -*-
-//
-// erzeugt Dienstag, 14. Juli 2015 16:56 (C) 2015 von Leander Jedamus
+/* -*- C -*- */
+/* */
+/* erzeugt Dienstag, 14. Juli 2015 16:56 (C) 2015 von Leander Jedamus */
 
 <<footer>>=
-// vim:cindent ai sw=2
+/* vim:set cindent ai sw=2 */
 <<includes>>=
 #include <stdlib.h>
 #include "check.h"
