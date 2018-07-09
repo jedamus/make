@@ -1,7 +1,7 @@
 /* -*- C -*- */
-/* lib1.h
+/* lib1.h */
 /* erzeugt Freitag, 29. Juni 2018 17:19 (C) 2018 von Leander Jedamus */
-/* modifiziert Montag, 09. Juli 2018 10:42 von Leander Jedamus */
+/* modifiziert Montag, 09. Juli 2018 10:56 von Leander Jedamus */
 /* modifiziert Freitag, 29. Juni 2018 17:25 von Leander Jedamus */
 
 #ifndef LIB1_H
@@ -12,5 +12,5 @@ int f();
 
 #endif /* LIB1_H */
 
-/* vim:set indent ai sw=2: */
+/* vim:set cindent ai sw=2: */
 
