@@ -18,7 +18,7 @@ C.c		= $(CC) $(strip $(CFLAGS) $(COPTS))
 C.cc		= $(CXX) $(strip $(CXXFLAGS) $(COPTS))
 COMPILE.c	= $(C.c) -c
 COMPILE.cc	= $(C.cc) -c
-LINK.c		= $(CC) $(strip $(CFLAGS) $(LOPTS))
+LINK.c		= $(CC) $(strip $(LFLAGS) $(LOPTS))
 LINK.cc		= $(CXX) $(strip $(CXXFLAGS) $(LOPTS))
 DEPEND.c	= $(C.c) -MM
 DEPEND.cc	= $(C.cc) -MM
@@ -35,12 +35,12 @@ endef
 
 define link.c
 $(RM) $@
-$(LINK.c) $^ $(LOADLIBES) -o $@ $(LDLIBS)
+$(LINK.c) $(strip $^ $(LOADLIBES) -o $@ $(LDLIBS))
 endef
 
 define link.cc
 $(RM) $@
-$(LINK.cc) $^ $(LOADLIBES) -o $@ $(LDLIBS)
+$(LINK.cc) $(strip $^ $(LOADLIBES) -o $@ $(LDLIBS))
 endef
 
 %.o:		%.c

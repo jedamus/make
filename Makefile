@@ -1,5 +1,5 @@
 # erzeugt Samstag, 04. Juli 2015 14:04 (C) 2015 von Leander Jedamus
-# modifiziert Montag, 09. Juli 2018 16:17 von Leander Jedamus
+# modifiziert Montag, 09. Juli 2018 20:21 von Leander Jedamus
 # modifiziert Mittwoch, 04. Juli 2018 20:52 von Leander Jedamus
 # modifiziert Dienstag, 06. März 2018 19:26 von Leander Jedamus
 # modifiziert Montag, 05. März 2018 15:57 von Leander Jedamus
@@ -45,14 +45,14 @@ CPPFLAGS		+= # -funroll-loops -fomit-frame-pointer
 CXXFLAGS		= # -felide-constructors -fmemoize-lookups
 DFLAGS			= -DINLINE=inline
 DFLAGS			+= -DCONST=const
-LDFLAGS			= # -s
+LDFLAGS			= -L .# -s
 LDLIBS			= -lm
 # LDLIBS		+= -lefence
 LDLIBS			+= # -lvga
 LDLIBS			+= # -ly
 LDLIBS			+= # -ltermcap
-LDLIBS			+= -ll # lex
-LDLIBS			+= -ly # yacc
+LDLIBS			+=-ll # lex
+LDLIBS			+=-ly # yacc
 CLEAN			= #
 
 define debug
@@ -252,7 +252,7 @@ $(LIBRARY):		$(LIBOBJS)
 			$(AR) r $@ $^
 
 libtest:		$(LIBRARY) $(MAINOBJS)
-			$(LINK.c) $(MAINOBJS) -L. -l$(LIBRARYNAME) -o $@
+			$(LINK.c) $(MAINOBJS) -l$(LIBRARYNAME) -o $@
 
 $(LATEXFILES3PASS1):
 			$(TOUCH) $(GLSFILE3)
