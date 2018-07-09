@@ -13,7 +13,7 @@ CC		= gcc# cc
 CXX		= g++
 
 COPTS		= $(DFLAGS) $(CPPFLAGS) $(IFLAGS) $(TARGET_ARCH)
-LOPTS		= $(CPPFLAGS) $(LDFLAGS) $(TARGET_ARCH)
+LOPTS		= $(LDFLAGS) $(TARGET_ARCH)
 C.c		= $(CC) $(strip $(CFLAGS) $(COPTS))
 C.cc		= $(CXX) $(strip $(CXXFLAGS) $(COPTS))
 COMPILE.c	= $(C.c) -c
