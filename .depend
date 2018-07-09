@@ -1,0 +1,5 @@
+dachflaeche.f:		helper.o
+yylval.l:		grammar.tab.o
+check.c:		check.h
+lib1.o:			lib1.h
+lib2.o:			lib2.h

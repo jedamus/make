@@ -1,5 +1,5 @@
 # erzeugt Samstag, 04. Juli 2015 14:04 (C) 2015 von Leander Jedamus
-# modifiziert Montag, 09. Juli 2018 10:59 von Leander Jedamus
+# modifiziert Montag, 09. Juli 2018 11:05 von Leander Jedamus
 # modifiziert Mittwoch, 04. Juli 2018 20:52 von Leander Jedamus
 # modifiziert Dienstag, 06. März 2018 19:26 von Leander Jedamus
 # modifiziert Montag, 05. März 2018 15:57 von Leander Jedamus
@@ -293,12 +293,6 @@ print:			$(FILES)
 
 .PHONY:			dummy
 dummy:
-
-dachflaeche.f:		helper.o
-yylval.l:		grammar.tab.o
-check.c:		check.h
-lib1.o:			lib1.h
-lib2.o:			lib2.h
 
 #
 # include a dependency file if one exists
