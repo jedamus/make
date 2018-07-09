@@ -1,4 +1,5 @@
 # erzeugt Samstag, 04. Juli 2015 14:04 (C) 2015 von Leander Jedamus
+# modifiziert Montag, 09. Juli 2018 10:23 von Leander Jedamus
 # modifiziert Mittwoch, 04. Juli 2018 20:52 von Leander Jedamus
 # modifiziert Dienstag, 06. März 2018 19:26 von Leander Jedamus
 # modifiziert Montag, 05. März 2018 15:57 von Leander Jedamus
@@ -38,7 +39,7 @@ TOUCH			= touch
 CFLAGS			= #
 CPPFLAGS		= -Wall -g
 CPPFLAGS		+= # -O2
-CPPFLAGS		+= # -ansi
+CPPFLAGS		+= -ansi
 CPPFLAGS		+= # -traditional
 CPPFLAGS		+= # -funroll-loops -fomit-frame-pointer
 CXXFLAGS		= # -felide-constructors -fmemoize-lookups
