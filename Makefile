@@ -1,5 +1,5 @@
 # erzeugt Samstag, 04. Juli 2015 14:04 (C) 2015 von Leander Jedamus
-# modifiziert Montag, 09. Juli 2018 11:20 von Leander Jedamus
+# modifiziert Montag, 09. Juli 2018 16:17 von Leander Jedamus
 # modifiziert Mittwoch, 04. Juli 2018 20:52 von Leander Jedamus
 # modifiziert Dienstag, 06. März 2018 19:26 von Leander Jedamus
 # modifiziert Montag, 05. März 2018 15:57 von Leander Jedamus
@@ -256,14 +256,14 @@ libtest:		$(LIBRARY) $(MAINOBJS)
 
 $(LATEXFILES3PASS1):
 			$(TOUCH) $(GLSFILE3)
-			pdflatex $(LATEXFILES3)
+			pdflatex $(LATEXFILES3)# > /dev/null
 			$(TOUCH) $(LATEXFILES3PASS1)
 
 rezepte.pdf:		$(LATEXFILES3) $(LATEXFILES3PASS1) $(INCLATEXFILES3)
-			$(latex)
+			$(latex)# > /dev/null
 			$(MAKEINDEX) -s $(MAKEINDEXGST) -g $(GLOFILE3) -o $(GLSFILE3)
 			$(MAKEINDEX) -g -s $(MAKEINDEXIST) $(IDXFILE3)
-			$(latex)
+			$(latex)# > /dev/null
 
 $(LATEXFILES4PASS1):	$(LATEXFILES4)
 			pdflatex $(LATEXFILES4)
