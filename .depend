@@ -1,6 +1,4 @@
-dachflaeche.f:		helper.o
-yylval.l:		grammar.tab.o
-check.c:		check.h
-lib1.o:			lib1.h
-lib2.o:			lib2.h
-main.o:			lib1.h lib2.h
+#
+lib1.o: lib1.c lib1.h
+lib2.o: lib2.c lib2.h
+main.o: main.c lib1.h lib2.h

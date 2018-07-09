@@ -1,5 +1,5 @@
 # erzeugt Samstag, 04. Juli 2015 14:04 (C) 2015 von Leander Jedamus
-# modifiziert Montag, 09. Juli 2018 11:05 von Leander Jedamus
+# modifiziert Montag, 09. Juli 2018 11:20 von Leander Jedamus
 # modifiziert Mittwoch, 04. Juli 2018 20:52 von Leander Jedamus
 # modifiziert Dienstag, 06. März 2018 19:26 von Leander Jedamus
 # modifiziert Montag, 05. März 2018 15:57 von Leander Jedamus
@@ -95,6 +95,7 @@ YACCOBJS		= $(YACCCFILES:%.c=%.o)
 OBJS			+= $(YACCOBJS)
 
 CLIBFILES		= lib1.c lib2.c
+CSOURCES		= $(CLIBFILES)
 HLIBFILES		= $(CLIBFILES:%.c=%.h)
 LIBOBJS			= $(CLIBFILES:%.c=%.o)
 OBJS			+= $(LIBOBJS)
@@ -102,6 +103,7 @@ LIBRARYNAME		= test
 LIBRARY			= lib$(LIBRARYNAME).a
 CLEAN			+= $(LIBRARY)
 CMAINFILE		= main.c
+CSOURCES		+= $(CMAINFILE)
 MAINOBJS		= $(CMAINFILE:%.c=%.o)
 OBJS			+= $(MAINOBJS)
 
@@ -294,12 +296,26 @@ print:			$(FILES)
 .PHONY:			dummy
 dummy:
 
+.PHONY:			depend
+depend:
+			echo "#" > .depend
+ifneq ($(strip $(CSOURCES)),)
+			$(DEPEND.c) $(CSOURCES) >> .depend
+endif
+ifneq ($(strip $(CCSOURCES)),)
+			$(DEPEND.cc) $(CCSOURCES) >> .depend
+endif
+
 #
 # include a dependency file if one exists
 #
 ifeq (.depend,$(wildcard .depend))
 include .depend
 endif
+
+dachflaeche.f:		helper.o
+yylval.l:		grammar.tab.o
+check.c:		check.h
 
 # vim:ai sw=2 noexpandtab
 
