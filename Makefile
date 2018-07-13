@@ -1,5 +1,5 @@
 # erzeugt Samstag, 04. Juli 2015 14:04 (C) 2015 von Leander Jedamus
-# modifiziert Freitag, 13. Juli 2018 19:24 von Leander Jedamus
+# modifiziert Freitag, 13. Juli 2018 21:18 von Leander Jedamus
 # modifiziert Montag, 09. Juli 2018 20:21 von Leander Jedamus
 # modifiziert Mittwoch, 04. Juli 2018 20:52 von Leander Jedamus
 # modifiziert Dienstag, 06. März 2018 19:26 von Leander Jedamus
@@ -19,8 +19,8 @@
 # modifiziert Mittwoch, 08. Juli 2015 15:20 von Leander Jedamus
 # modifiziert Samstag, 04. Juli 2015 14:11 von Leander Jedamus
 
-SUFFIXES	:= .out .a .o .c .cc .C .y .l .s .S .h .dvi .tex .latex .ps .w .ch .sh .noweb .mf .ind .sgml .f .cob .1 .odt .html .pdf .ps .tfm
-.SUFFIXES	:= .out .a .o .c .cc .C .y .l .s .S .h .dvi .tex .latex .ps .w .ch .sh .noweb .mf .ind .sgml .f .cob .1 .odt .html .pdf .ps .tfm
+SUFFIXES	:= .out .a .o .c .cc .cpp .c++ .cxx .C .y .l .s .S .h .dvi .tex .latex .ps .w .ch .sh .nw .noweb .mf .ind .sgml .f .cob .1 .odt .html .pdf .ps .tfm
+.SUFFIXES	:= .out .a .o .c .cc .cpp .c++ .cxx .C .y .l .s .S .h .dvi .tex .latex .ps .w .ch .sh .nw .noweb .mf .ind .sgml .f .cob .1 .odt .html .pdf .ps .tfm
 
 AR			= ar
 include Makefile.c_and_c++
