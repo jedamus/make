@@ -58,5 +58,8 @@ endef
 %.o:		%.cxx
 		$(compile.cc)
 
+%.o:		%.C
+		$(compile.cc)
+
 # vim:ai sw=2 noexpandtab
 
