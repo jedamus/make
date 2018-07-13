@@ -49,5 +49,14 @@ endef
 %.o:		%.cc
 		$(compile.cc)
 
+%.o:		%.cpp
+		$(compile.cc)
+
+%.o:		%.c++
+		$(compile.cc)
+
+%.o:		%.cxx
+		$(compile.cc)
+
 # vim:ai sw=2 noexpandtab
 
