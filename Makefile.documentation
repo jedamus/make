@@ -9,6 +9,7 @@
 
 POD2MAN		= pod2man
 GROFF		= groff
+PYDOC		= pydoc
 
 ifeq ($(machtype),Linux)
 RST2MAN		= rst2man
@@ -54,6 +55,11 @@ define rst2odt.txt
 $(RST2ODT) $< > $@
 endef
 
+define pydoc.py
+@$(RM) $@
+$(PYDOC) -w $(<:%.py=%)
+endef
+
 %.1:		%.pl
 		$(pod2man.pl)
 
@@ -71,6 +77,9 @@ endef
 
 %.odt:		%.$(RST)
 		$(rst2odt.txt)
+
+%.html:		%.py
+		$(pydoc.py)
 
 # vim:ai sw=2 noexpandtab
 
