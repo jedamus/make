@@ -1,4 +1,5 @@
 # erzeugt Samstag, 04. Juli 2015 14:04 (C) 2015 von Leander Jedamus
+# modifiziert Mittwoch, 06. November 2019 11:59 von Leander Jedamus
 # modifiziert Dienstag, 05. November 2019 13:04 von Leander Jedamus
 # modifiziert Freitag, 13. Juli 2018 21:18 von Leander Jedamus
 # modifiziert Montag, 09. Juli 2018 20:21 von Leander Jedamus
@@ -22,6 +23,8 @@
 
 SUFFIXES	:= .out .a .o .c .cc .cpp .c++ .cxx .C .y .l .s .S .h .dvi .tex .latex .ps .w .ch .sh .nw .noweb .mf .ind .sgml .f .cob .1 .odt .html .pdf .ps .tfm
 .SUFFIXES	:= .out .a .o .c .cc .cpp .c++ .cxx .C .y .l .s .S .h .dvi .tex .latex .ps .w .ch .sh .nw .noweb .mf .ind .sgml .f .cob .1 .odt .html .pdf .ps .tfm
+
+DEPENDFILE		= .depend
 
 AR			= ar
 STRIP			= strip
@@ -304,19 +307,19 @@ dummy:
 
 .PHONY:			depend
 depend:
-			echo "#" > .depend
+			echo "#" > $(DEPENDFILE)
 ifneq ($(strip $(CSOURCES)),)
-			$(DEPEND.c) $(CSOURCES) >> .depend
+			$(DEPEND.c) $(CSOURCES) >> $(DEPENDFILE)
 endif
 ifneq ($(strip $(CCSOURCES)),)
-			$(DEPEND.cc) $(CCSOURCES) >> .depend
+			$(DEPEND.cc) $(CCSOURCES) >> $(DEPENDFILE)
 endif
 
 #
 # include a dependency file if one exists
 #
-ifeq (.depend,$(wildcard .depend))
-include .depend
+ifeq ($(DEPENDFILE),$(wildcard $(DEPENDFILE)))
+include $(DEPENDFILE)
 endif
 
 dachflaeche.f:		helper.o
