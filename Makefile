@@ -1,5 +1,5 @@
 # erzeugt Samstag, 04. Juli 2015 14:04 (C) 2015 von Leander Jedamus
-# modifiziert Mittwoch, 20. November 2019 14:36 von Leander Jedamus
+# modifiziert Mittwoch, 20. November 2019 14:43 von Leander Jedamus
 # modifiziert Mittwoch, 06. November 2019 11:59 von Leander Jedamus
 # modifiziert Dienstag, 05. November 2019 13:04 von Leander Jedamus
 # modifiziert Freitag, 13. Juli 2018 21:18 von Leander Jedamus
@@ -107,6 +107,7 @@ LIBOBJS			= $(CLIBFILES:%.c=%.o)
 OBJS			+= $(LIBOBJS)
 LIBRARYNAME		= test
 LIBRARY			= lib$(LIBRARYNAME).a
+LOADLIBES		= -l$(LIBRARYNAME)
 CLEAN			+= $(LIBRARY)
 CMAINFILE		= main.c
 CSOURCES		+= $(CMAINFILE)
@@ -261,7 +262,7 @@ $(LIBRARY):		$(LIBOBJS)
 			$(archive)
 
 libtest:		$(LIBRARY) $(MAINOBJS)
-			$(LINK.c) $(MAINOBJS) -l$(LIBRARYNAME) -o $@
+			$(link.c)
 
 $(LATEXFILES3PASS1):
 			$(TOUCH) $(GLSFILE3)
