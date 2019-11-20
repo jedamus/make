@@ -9,16 +9,19 @@
 # modifiziert Mittwoch, 08. Juli 2015 15:20 von Leander Jedamus
 # modifiziert Samstag, 04. Juli 2015 14:11 von Leander Jedamus
 
-CC		= gcc# cc
+CC		= cc# gcc # clang
+AR		= ar
+RANLIB		= ranlib
 CXX		= g++
 
 COPTS		= $(DFLAGS) $(CPPFLAGS) $(IFLAGS) $(TARGET_ARCH)
-LOPTS		= $(LDFLAGS) $(TARGET_ARCH)
-C.c		= $(CC) $(strip $(CFLAGS) $(COPTS))
+COPTS		+= -Wall
+LOPTS		= $(CPPFLAGS) $(LDFLAGS) $(TARGET_ARCH)
+C.c		= $(CC) $(strip $(CFLAGS)$(COPTS))
 C.cc		= $(CXX) $(strip $(CXXFLAGS) $(COPTS))
 COMPILE.c	= $(C.c) -c
 COMPILE.cc	= $(C.cc) -c
-LINK.c		= $(CC) $(strip $(LFLAGS) $(LOPTS))
+LINK.c		= $(CC) $(strip $(CFLAGS) $(LOPTS))
 LINK.cc		= $(CXX) $(strip $(CXXFLAGS) $(LOPTS))
 DEPEND.c	= $(C.c) -MM
 DEPEND.cc	= $(C.cc) -MM
@@ -35,30 +38,24 @@ endef
 
 define link.c
 $(RM) $@
-$(LINK.c) $(strip $^ $(LOADLIBES) -o $@ $(LDLIBS))
+$(strip $(LINK.c) $(filter %.o,$^) $(LOADLIBES) -o $@ $(LDLIBS))
 endef
 
 define link.cc
 $(RM) $@
-$(LINK.cc) $(strip $^ $(LOADLIBES) -o $@ $(LDLIBS))
+$(strip $(LINK.cc) $(filter %.o,$^) $(LOADLIBES) -o $@ $(LDLIBS))
+endef
+
+define archive
+$(RM) $@
+$(AR) r $@ $^
+$(RANLIB) $@
 endef
 
 %.o:		%.c
 		$(compile.c)
 
 %.o:		%.cc
-		$(compile.cc)
-
-%.o:		%.cpp
-		$(compile.cc)
-
-%.o:		%.c++
-		$(compile.cc)
-
-%.o:		%.cxx
-		$(compile.cc)
-
-%.o:		%.C
 		$(compile.cc)
 
 # vim:ai sw=2 noexpandtab
