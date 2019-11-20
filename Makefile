@@ -1,4 +1,5 @@
 # erzeugt Samstag, 04. Juli 2015 14:04 (C) 2015 von Leander Jedamus
+# modifiziert Mittwoch, 20. November 2019 14:33 von Leander Jedamus
 # modifiziert Mittwoch, 06. November 2019 11:59 von Leander Jedamus
 # modifiziert Dienstag, 05. November 2019 13:04 von Leander Jedamus
 # modifiziert Freitag, 13. Juli 2018 21:18 von Leander Jedamus
@@ -26,7 +27,6 @@ SUFFIXES	:= .out .a .o .c .cc .cpp .c++ .cxx .C .y .l .s .S .h .dvi .tex .latex 
 
 DEPENDFILE		= .depend
 
-AR			= ar
 STRIP			= strip
 include Makefile.c_and_c++
 include Makefile.latex
