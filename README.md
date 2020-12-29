@@ -9,3 +9,9 @@ Creates also documentation (rST, pod, TeX, LaTeX) and knows how to handle noweb 
 make
 make doc
 ```
+
+or if you only want to get rezepte.pdf and konfituere.pdf, do:
+```
+make rezepte.pdf
+make konfituere.pdf
+```
