@@ -11,6 +11,7 @@ make doc
 ```
 
 or if you only want to get rezepte.pdf and konfituere.pdf, do:
+
 ```
 make rezepte.pdf
 make konfituere.pdf
