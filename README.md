@@ -10,7 +10,7 @@ Perhaps you have to do first:
 ```
 sudo apt install gcc g++ open-cobol gfortran noweb cweb-latex flex \
                  bison docutils-common docutils-doc texlive-full \
-		 gnuplot
+		 gnuplot rst2pdf
 ```
 
 To make everything, do:
