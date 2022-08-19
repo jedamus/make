@@ -24,5 +24,23 @@ endef
 %.o:		%.f
 		$(compile.f)
 
+%.o:		%.for
+		$(compile.f)
+
+%.o:		%.f77
+		$(compile.f)
+
+%.o:		%.f90
+		$(compile.f)
+
+%.o:		%.f95
+		$(compile.f) -std=f95
+
+%.o:		%.f03
+		$(compile.f) -std=f2003
+
+%.o:		%.f08
+		$(compile.f) -std=f2008
+
 # vim:ai sw=2 noexpandtab
 
